@@ -7,7 +7,7 @@
 - Diskusjon
     - Skal sammenlinging mellom oppgave 1 og 2 komme her?
 
-- Mer på introduksjon, mangler hypothese/hva som egt e greia med labben'
+- Introduksjon er svak, skal vi finne en rød tråd på hele labben? HVa er egt hypothesen/formålet/intensjon whatever the fuck e meninga bak d vi gjor i labben?
 
 ## Small ones:
 
