@@ -9,6 +9,8 @@
 
 - Introduksjon er svak, skal vi finne en rød tråd på hele labben? HVa er egt hypothesen/formålet/intensjon whatever the fuck e meninga bak d vi gjor i labben?
 
+- Ska vi virkeli ha en konklusjon t d her?
+
 ## Small ones:
 
 - Mer teori? Mangler grunnleggende ting om CMOS, typ regions of saturation (cutoff, linear, saturation), kapasitans i cmos? 
