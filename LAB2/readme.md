@@ -11,6 +11,7 @@
 
 - Ska vi virkeli ha en konklusjon t d her?
 
+- Lab oppgaven nevne miller effect, føle ikke d e fokus av labben men bør d nevnes og forklares. I såfall kor da
 ## Small ones:
 
 - Mer teori? Mangler grunnleggende ting om CMOS, typ regions of saturation (cutoff, linear, saturation), kapasitans i cmos? 
