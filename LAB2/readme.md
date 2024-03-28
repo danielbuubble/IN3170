@@ -1,6 +1,6 @@
 ### TODO list
 
-## Big ones:
+## Veldig viktig:
 
 - ALt med oppgave 2 (ANDREAS)
 
@@ -11,7 +11,7 @@
 
 - Ska vi virkeli ha en konklusjon t d her? (ALLE TRE DISKUTER)
 
-## Small ones:
+## Også veldig viktig, men mindre veldig
 
 - Mangler d teori? Erik det er nok (ANDREAS og DANIEL må se over)
 
