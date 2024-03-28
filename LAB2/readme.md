@@ -11,7 +11,7 @@
 
 - Ska vi virkeli ha en konklusjon t d her? (ALLE TRE DISKUTER)
 
-## Også veldig viktig, men mindre veldig
+## Også veldig viktig, men mindre vektlegging på 'veldig'
 
 - Mangler d teori? Erik det er nok (ANDREAS og DANIEL må se over)
 
