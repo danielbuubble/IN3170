@@ -13,7 +13,7 @@
 
 ## Også veldig viktig, men mindre vektlegging på 'veldig'
 
-- Mangler d teori? Erik det er nok (ANDREAS og DANIEL må se over)
+- Mangler d teori? Erik mener det er nok (ANDREAS og DANIEL må se over)
 
 - Alle må se over arbeidet, Erik ønsker spesiellt tilbakemelding på:
       - Method
