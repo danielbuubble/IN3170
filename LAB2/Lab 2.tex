@@ -24,15 +24,17 @@
 \tableofcontents
 
 \section{Introduction}
-The purpose of this lab is to investigate the switching behavior of digital circuits, specifically CMOS inverters, and to analyze the effects of parasitic capacitance on the propagation delay of these circuits. The lab is divided into two main tasks: the first task involves measuring the input capacitance of a CMOS inverter, while the second task focuses on the resistive switch model of nMOSFETs in series. The lab is conducted using both physical circuits and simulations in Cadence Virtuoso, with the aim of comparing the results from the two methods. The lab is conducted in the context of digital electronics and is relevant for understanding the behavior of digital circuits in modern electronics.
+The purpose of this lab is to investigate the switching behavior of digital circuits, specifically Complementary Metal-Oxide-Semiconductor (CMOS) inverters, and to analyze the effects of parasitic capacitance on the propagation delay of these circuits. The lab is divided into two main tasks: the first task involves measuring the input capacitance of a CMOS inverter, while the second task focuses on the resistive switch model of nMOSFETs in series. The lab is conducted using both physical circuits and simulations in Cadence Virtuoso, with the aim of comparing the results from the two methods. The lab is conducted in the context of digital electronics and is relevant for understanding the behavior of digital circuits in modern electronics.
 
 \section{Theory}
 
 \subsection{FET switch models}
-Binary variables in digital electronics are represented by high (‘H’) or low (‘L’) voltage levels, ideally switching between the power supply voltage ($V_{dd}$) and ground (Gnd). However, in reality, the switch between these two states is not instantaneous and is modeled using the switching threshold voltage ($V_{sw}$), leaving a range where signals are undefined. The switching behavior of field-effect Transistors (FETs) depends on the gate voltage ($V_{GS}$) relative to the switching threshold, with nFETs conducting for $V_{GS} > V_{sw}$ and pFETs for $V_{GS} < V_{sw}$. $R_{ON}$, and $I_{ON}$ are parameters used to model propagation delays and are derived from complex transistor models or approximated for relative delay predictions.
+Binary variables in digital electronics are represented by high (‘H’) or low (‘L’) voltage levels, ideally switching between the power supply voltage ($V_{dd}$) and ground (Gnd). However, in reality, the switch between these two states is not instantaneous and is modeled using the switching threshold voltage ($V_{sw}$), leaving a range where signals are undefined. The switching threshold is defined as the voltage at which the output voltage is equal to the input voltage, and is typically set to $V_{dd}/2$ for CMOS inverters. 
+
+The switching behavior of field-effect Transistors (FETs) depends on the gate voltage ($V_{GS}$) relative to the switching threshold, with nFETs conducting for $V_{GS} > V_{sw}$ and pFETs for $V_{GS} < V_{sw}$. $R_{ON}$, and $I_{ON}$ are parameters used to model propagation delays and are derived from complex transistor models or approximated for relative delay predictions.
 
 \subsection{Capacitance at transistor level}
-In a Complementary Metal-Oxide-Semiconductor (CMOS) circuit, each metal-oxide-semiconductor field-effect transistor (MOSFET) structure exhibits several parasitic capacitance which must be accounted for in the design. By examinating the MOSFET structure, one can identify several cases where conductive regions are seperated by a dielectric material or a depletion region. These cases are the source of capacitance in a MOSFET, and can be divided into three main components: the gate-to-source capacitance $C_{GS}$, the gate-to-drain capacitance $C_{GD}$ and the gate-to-bulk capacitance $C_{GB}$. The total input capacitance of the structure is the sum of these capacitances. The formulas for these capacitances are derived in the compendium for IN3170 course \cite{Kompendium}.
+In a CMOS circuit, each metal-oxide-semiconductor field-effect transistor (MOSFET) structure exhibits several parasitic capacitance which must be accounted for in the design. By examinating the MOSFET structure, one can identify several cases where conductive regions are seperated by a dielectric material or a depletion region. These cases are the source of capacitance in a MOSFET, and can be divided into three main components: the gate-to-source capacitance $C_{GS}$, the gate-to-drain capacitance $C_{GD}$ and the gate-to-bulk capacitance $C_{GB}$. The total input capacitance of the structure is the sum of these capacitances. The formulas for these capacitances are derived in the compendium for IN3170 course \cite{Kompendium}.
 
 \subsection{Propagation delay}
 As each gate operation in a CMOS structure requires charging and discharging of these capacitances, the system has a dynamic power consumption. I.e. when the input voltage changes, the circuit will experience a time delay as the output voltage reacts to the change. This propagation delay of a logic gate e.g. CMOS inverter is the time difference for the output signal as the input signal changes. It is usually measured at 50\% at the transition from input to output. The propagation delay is a measure of how fast the logic gate can respond to a change in the input signal.
@@ -51,6 +53,8 @@ The switching behavior of a CMOS inverter could be modeled as an first order RC 
 \begin{equation}\label{eq:tau} \tau = R_{on}C_{tot}\end{equation}
  where $R_{on}$ is resistive model for a transistor and $C_{tot}$ is the load capacitance.
 
+\clearpage
+
 \subsection{The resistive switch model}
 The resistive switch model is a method used to analyze dynamic electronic circuits that alternate between distinct resistive states through switches. This model simplifies complex, time-varying systems by treating them as a set of static configurations, making it easier to study their transient and steady-state responses. To get an even more accurate approximation of the system's behavior However, the resistive switch model can be used in conjunction with the circuit's transient response in the form of $I_{ON}$ or $t_p$. This dynamic resistive switch model is represented by the equation:
 \begin{equation}\label{eq:ron}
@@ -61,7 +65,7 @@ The resistive switch model is a method used to analyze dynamic electronic circui
 \subsection{Miller effect}
 The Miller effect refers to the phenomenon which describes the increase in effective capacitance between the input and output terminals of an active device due to feedback at the point of amplification. In essence, it refers to the phenomenon where a input capacitance is magnified as a result of the voltage gain of the circuit, leading to an apparent increase in input capacitance during signal transitions. This effect has implications for the design and performance analysis of amplifiers, as well as digital circuits such as CMOS inverters.
 
-\paragraph{} In the context of the latter, the Miller effect is especially pronunced during the transition of signal levels, specifically at the switching point $V_{dd}/2$. During this critical switching point, the output capacitance effectively gets coupled back to the input through the inverter's feedback mechanism. As a result, a momentary surge in effective capacitance is experienced, the Miller capacitance, coinciding with the maximum voltage gain of the inverter.
+\paragraph{} In the context of the latter, the Miller effect is especially pronunced during the transition of signal levels, specifically at the switching point. During the critical switching point, the output capacitance effectively gets coupled back to the input through the inverter's feedback mechanism. As a result, a momentary surge in effective capacitance is experienced, the Miller capacitance, coinciding with the maximum voltage gain of the inverter.
 
 
 \section{Materials and Methods}
@@ -158,14 +162,14 @@ The digital transistor circuits are built and simulated in Cadence Virtuoso as s
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.6\textwidth]{plot1.png}
-  \caption{Plot of the rising edge of a double inverter circuit with a 100k$\Omega$ resistor before the first inverter with added points of interest.}
+  \caption{Plot of the rising edge of a double inverter circuit with a 100k$\Omega$ resistor before the first inverter with added points of interest. From left to right the points are: start of rising edge, switching point and stop of rising edge.}
   \label{fig:plot}
 \end{figure}
 
 
 \paragraph{Input capacitance of the inverter:}
 \begin{equation}
-    C_{I} = 8.6 \ \text{pF}
+    C_{I} = 8.6 \ \text{pF} \label{eq:1}
 \end{equation}
 
 
@@ -211,12 +215,12 @@ The digital transistor circuits are built and simulated in Cadence Virtuoso as s
 
 \textbf{$R_{on}$ calculated from the resistive switch model:}
 \begin{align}
-  R_{on} &= 7.854 k\Omega \nonumber \\
+  R_{on} &= 7.854 k\Omega
 \end{align}
 
 \textbf{Expected propogation time $t_p$ for two resistive switch model nMOSFETs in series:}
 \begin{align}
-  t_p &= 10.84 \mu s \nonumber
+  t_p &= 10.84 \mu s
 \end{align}
 
 
@@ -236,11 +240,11 @@ In figure \ref{fig:plot} there is a noticable notch in the transition from low-t
 
 \subsection{Assesment of values}
 
-\paragraph{Task 1a:} The input capacitance of 8.6 nF is within the expected range as the lab assignment specified that the inherent probe capacitance was to large to not account for. 
+\paragraph{Task 1a:} The input capacitance of 8.6 nF is within the expected range as the lab assignment specified that the inherent probe capacitance was too large to not account for. 
 
 \paragraph{Task 2:} The predicted $t_p$ of the resistive switch model 10.84 $\mu$s, is different from the observed $t_p$ of 9.89 $\mu$s as the lab assignment hinted at. That is a noticable speedup of 8.764 \%. The speedup could be attributed to an increase in the charge mobility, specifically how the geometry of MOSFETs in series may lead to a stronger electric field and by extension drain current. With a higher current the capacitor is discharging faster than accounted for resulting in a switch time faster than a resistive proportionality.
 
-\paragraph{} The transition curve from the circuits in task 2 have signs of RC decay at its rising and falling edge, but is pretty linear in between. This alligns with how we modeled the transition period in the resistive switch model. Using a large signal EKV model, we could anticipate that a shorter transition time would potentially be observed in the case of two MOSFETs in series. This prediction comes from the fact that the EKV model takes into account the velocity saturation and channel length modulation of the devices - phenomena not always accurately represented in simpler MOSFET models. When devices are in series, these effects can lead to faster signal transitions compared to individual devices, especially for larger signals where these effects become more pronounced. Therefore, while it is a somewhat simplified explanation, it is plausible that the EKV model would indeed predict a shorter transition time for two series-connected MOSFETs.
+\paragraph{} The transition curve from the circuits in task 2 have signs of RC decay at its rising and falling edge, but is pretty linear in between. This aligns with how we modeled the transition period in the resistive switch model. Using a large signal EKV model, we could anticipate that a shorter transition time would potentially be observed in the case of two MOSFETs in series. This prediction comes from the fact that the EKV model takes into account the velocity saturation and channel length modulation of the devices - a phenomena not always accurately represented in simpler MOSFET models. When devices are in series, these effects can lead to faster signal transitions compared to individual devices, especially for larger signals where these effects become more pronounced. Therefore, while it is a somewhat simplified explanation, it is plausible that the EKV model would indeed predict a shorter transition time for two series-connected MOSFETs.
 
 \subsection{Comparing task 1 and task 2}
 By constructing the exercises as has been done in this lab assignment, we can learn different aspects of digital circuits. Task 1 focuses on the input capacitance of a CMOS inverter, while task 2 focuses on the resistive switch model of nMOSFETs in series. The two tasks are related in that they both investigate the switching behavior of digital circuits, but they do so from different perspectives. Task 1 is more focused on the physical properties of the CMOS inverter, while task 2 is more focused on the theoretical properties of the resistive switch model. By comparing the results from the two tasks, we can gain a more comprehensive understanding of the behavior of digital circuits and how they can be analyzed and optimized.
@@ -256,8 +260,9 @@ We find the real voltage span of the inverter by subtracting the maximum and min
 Then we read the time from the x-axis when the voltage reaches 63.2\% of the final value.
 
 
-\paragraph{Input capacitance of the inverter:}
+\paragraph{Input capacitance of the inverter:} 
 From equation \ref{eq:tau} we solve for $C_{I}$ with values from figure \ref{fig:plot} and adjust the time in accordance with the noted voltage value:
+
 \begin{align}
     \tau &= R_{on}C_{tot} \nonumber \\
     \Rightarrow C_{tot} &= \frac{\tau}{R_{on}} \nonumber \\
@@ -271,7 +276,7 @@ Note: The lab manual states that 15 pF is to be subtracted from the total capaci
 \begin{align}
     R_{ON} &= \frac{t_p}{0.69 \cdot C_L} \nonumber \\
     &= \frac{5.419\mu s}{0.69 \cdot 1 nF} \nonumber \\
-    &= 7.854 k\Omega \nonumber \\
+    &= 7.854 k\Omega \nonumber
 \end{align}
 \paragraph{Expected time for two resistive switch model nFETs in series:}
 \begin{align}
