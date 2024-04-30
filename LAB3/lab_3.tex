@@ -21,17 +21,9 @@
 
 \begin{document}
 \maketitle
-\tableofcontents
-
-\section{Introduction}
-
-\section{Theory}
-
-\subsection{}
 
 
-
-\section{Materials and Methods}
+\section{Task 1}
 \subsection{Equipment}
 \begin{table}[h]
     \centering
@@ -40,67 +32,25 @@
         \textbf{Component} & \textbf{Model} & \textbf{Quantity} \\
         \hline
         Resistor & 100k$\Omega$ & 1 \\
-        Capacitor & 1 $\mu$F & 1 \\
-        IC with 6 transistors & CD4007UBE & 1 \\
-        Copper wires & - & 12 \\
-        Printed Circuit Board & - & 1 \\
-        Soldering iron & - & 1 \\
-        Soldering wire & - & 1 \\
-        Oscilloscope & HP54622 & 1 \\
-        Waveform generator  & HP33120 & 1 \\
-        Voltage source & HPE3631 & 1 \\
-        Computer w/ "Cadence Virtuoso" & 6.1.7 & 1 \\
-        NMOSFET* & TSMC 65nm & 3 \\
-        Waveform generator* & - & 2 \\ 
-        Capacitor* & - & 2 \\
+
         \hline
     \end{tabular}
-    \caption{List of components used in the experiment. Components marked with * are simulated in Cadence Virtuoso.}
+    \caption{List of components used in task 1.}
     \label{tab:bom}
 \end{table}
 
-\subsection{Task 1a}
+\section{Task 2}
+In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throught the circuit, despite changes to $V_{DS}$.
 
+A Field-Effect Transistor (FET) operation in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because $V_{DS}$ approching the saturation region is high enough that it has maxed out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
 
-\subsection{Task 1b}
+In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{c).png}
+    \caption{Screencapture of the circuit in figure 1 c) from the lab manual simulated in Cadence.}
+    \label{fig:task2}
+\end{figure}
 
-\subsection{Task 2}
-
-\clearpage
-
-\section{Results}
-\subsection{Task 1}
-
-\subsection{Task 2}
-
-\textbf{}
-
-\section{Discussion}
-
-\subsection{Inaccuracy in measurements}
-\paragraph{Task 1a:} 
-
-
-\paragraph{Task 1b:} 
-
-\subsection{Assesment of values}
-
-\paragraph{Task 1a:} 
-
-\paragraph{Task 2:} 
-
-\paragraph{} 
-
-\subsection{Comparing task 1 and task 2}
-
-\section{Appendix}
-\subsection{Calculations}
-\paragraph{}
-
-\begin{thebibliography}{9}
-\bibitem{Kompendium} Philipp Häfliger. (2024). \textit{Microelectronics Essentials} (beta 0.10). Department of Informatics, University of Oslo.
-\bibitem{Sedra/Smith} Philipp Häfliger (2018). \textit{Excerpt of Sedra/Smith Chapter 15: Inverter Delay} [PDF].  Department of Informatics, University of Oslo. \url{https://www.uio.no/studier/emner/matnat/ifi/INF3410/h18/forelesningsfoiler/chapter15.pdf}
-\bibitem{Neureuther} Neureuther, A.R. (2001). Lecture 24: CMOS Capacitance and Circuit Delay [PDF]. University of California, Berkeley. \url{https://inst.eecs.berkeley.edu/~ee42/fa01/LectNotes/42_24.pdf}
-\end{thebibliography}
 \end{document}
