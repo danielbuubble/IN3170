@@ -40,9 +40,9 @@
 \end{table}
 
 \section{Task 2}
-In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throught the circuit, despite changes to $V_{DS}$.
+In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throughout the circuit, despite changes to $V_{DS}$.
 
-A Field-Effect Transistor (FET) operation in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because $V_{DS}$ approching the saturation region is high enough that it has maxed out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
+A Field-Effect Transistor (FET) operating in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because $V_{DS}$ approching the saturation region is high enough that it has maxed out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
 
 In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
 
@@ -50,7 +50,34 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
     \centering
     \includegraphics[width=0.8\textwidth]{c).png}
     \caption{Screencapture of the circuit in figure 1 c) from the lab manual simulated in Cadence.}
-    \label{fig:task2}
+    \label{fig:circuitc}
 \end{figure}
+
+The bias current is implementet as a current mirror, consisting of $M2$ and $I4$, which sets the current that flows through $MNMOS$.
+
+\paragraph*{Adding a voltage cascode}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{circuit_d_cascode.png}
+    \caption{Screencapture of the circuit in figure 1 d) from the lab manual simulated in Cadence.}
+    \label{fig:circuitd}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{circuit_d_simple.png}
+    \caption{Screencapture of the circuit in figure 1 d) from the lab manual simulated in Cadence.}
+    \label{fig:circuitdsimple}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{plot_circuit_d_dc_sweep_omskjert.jpg}
+    \caption{Screencapture of the DC sweep of both circuits in figure 1 d).}
+    \label{fig:plotd}
+\end{figure}
+
 
 \end{document}
