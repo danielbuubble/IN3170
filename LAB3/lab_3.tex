@@ -55,9 +55,30 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
 
 The bias current is implementet as a current mirror, consisting of $M2$ and $I4$, which sets the current that flows through $MNMOS$.
 
-\paragraph*{Adding a voltage cascode}
+As suggested in the lab manual, a DC analysis is performed with $V_C$ as a sweep parameter. This results in the following plot:
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{plot_dc_sweep_c.jpg}
+    \caption{Screencapture of the DC sweep of the circuit in figure 1.}
+    \label{fig:plotc}
+\end{figure}
 
+$I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. 
+\begin{align}
+    I_D &= 362.855 \ \text{nA} - 283.135 \ \text{nA} \nonumber \\
+        &= 79.72 \ \text{nA} \nonumber 
+\end{align}
+
+The same is used to calculate $V_{DS}$, however as $V_C$ is the sweep parameter, the voltage is linear. The two points needed to calculate $V_{DS}$ can then be set wherever ont the curve. In figure \ref{fig:plotc}, the points are chosen to be somewhere in the middle of the curve.
+
+\begin{align}
+    V_{DS} = 199.07 \ \text{mV} \nonumber
+\end{align}
+$R_{on}$ can then simply be calculated using Ohms Law:
+\begin{align}
+    R_{on} = \frac{V_{DS}}{I_D} = \frac{V_{DS} = 199.07 \ \text{mV}}{79.72 \ \text{nA}} = 2.497 \ \text{M}\Omega
+\end{align}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{circuit_d_cascode.png}
