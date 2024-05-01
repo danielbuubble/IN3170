@@ -75,10 +75,12 @@ The same is used to calculate $V_{DS}$, however as $V_C$ is the sweep parameter,
 \begin{align}
     V_{DS} = 199.07 \ \text{mV} \nonumber
 \end{align}
-$R_{on}$ can then simply be calculated using Ohms Law:
+$R_{ds}$ can then simply be calculated using Ohms Law:
 \begin{align}
-    R_{on} = \frac{V_{DS}}{I_D} = \frac{V_{DS} = 199.07 \ \text{mV}}{79.72 \ \text{nA}} = 2.497 \ \text{M}\Omega
+    R_{ds} = \frac{V_{DS}}{I_D} = \frac{V_{DS} = 199.07 \ \text{mV}}{79.72 \ \text{nA}} = 2.497 \ \text{M}\Omega
 \end{align}
+
+The next step is to change $\frac{W}{L}$ of $M0 \ (MNMOS)$  in order to better it as a current source. For this rapport, the length was increased to $1 \  \mu m$ 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{circuit_d_cascode.png}
