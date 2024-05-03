@@ -8,9 +8,23 @@
 \usepackage{titling}
 \usepackage{enumitem}
 \usepackage{matlab-prettifier}
-\usepackage{hyperref}
+\usepackage[colorlinks]{hyperref}
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
+
+\makeatletter
+\Hy@AtBeginDocument{%
+  \def\@pdfborder{0 0 1}% Overrides border definition set with colorlinks=true
+  \def\@pdfborderstyle{/S/U/W 1}% Overrides border style set with colorlinks=true
+                                % Hyperlink border style will be underline of width 1pt
+}
+\makeatother
+
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=blue,
+  linkbordercolor=blue,% 
+}
 \footskip = 1pt
 \textheight = 700pt
 \setlength{\droptitle}{-10em}
@@ -51,39 +65,40 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{c).png}
+    \includegraphics[width=0.8\textwidth]{circuit_c_fixed.png}
     \caption{Screencapture of the circuit in figure 1 c) from the lab manual simulated in Cadence.}
     \label{fig:circuitc}
 \end{figure}
 
-The bias current is implementet as a current mirror, consisting of $M2$ and $I4$, which sets the current that flows through $MNMOS$.
+The bias current is implementet as a current mirror, consisting of $M2$ and $I4$, which sets the current that flows through $M1$.
+
+\clearpage 
 
 As suggested in the lab manual, a DC analysis is performed with $V_C$ as a sweep parameter. This results in the following plot:
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{plot_dc_sweep_c.jpg}
+    \includegraphics[width=0.8\textwidth]{plot_circuit_c_FINAL.png}
     \caption{Screencapture of the DC sweep of the circuit in figure 1.}
     \label{fig:plotc}
 \end{figure}
 
-$I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. 
+$\Delta I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. The DC sweep simulation is set to sweep from $0 \ \text{V}$ to $1.5 \ \text{V}$, as the lab manual specifies to use only up to $1.2 \ \text{V}$, the last point is chosen to be close to $1.2 \ \text{V}$.
 \begin{align}
-    I_D &= 362.855 \ \text{nA} - 283.135 \ \text{nA} \nonumber \\
-        &= 79.72 \ \text{nA} \nonumber 
+    \Delta I_D &= 414.926 \ \text{nA}
 \end{align}
 
-The same is used to calculate $V_{DS}$, however as $V_C$ is the sweep parameter, the voltage is linear. The two points needed to calculate $V_{DS}$ can then be set wherever ont the curve. In figure \ref{fig:plotc}, the points are chosen to be somewhere in the middle of the curve.
+The same method is used to calculate $\Delta V_{DS}$, however as $V_C$ is the sweep parameter, the voltage rises lineary. The difference between two points on this line will be the same wherever. In figure \ref{fig:plotc}, the points are chosen arbitrarily.
 
 \begin{align}
-    V_{DS} = 199.07 \ \text{mV} \nonumber
+    \Delta V_{DS} = 1 \ \text{V}
 \end{align}
 $R_{ds}$ can then simply be calculated using Ohms Law:
 \begin{align}
-    R_{ds} = \frac{V_{DS}}{I_D} = \frac{V_{DS} = 199.07 \ \text{mV}}{79.72 \ \text{nA}} = 2.497 \ \text{M}\Omega
+    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
 \end{align}
 
-The next step is to change $\frac{W}{L}$ of $M0 \ (MNMOS)$  in order to better it as a current source. For this rapport, the length was increased to $1 \  \mu m$ 
+The next step is to change $\frac{W}{L}$ of $M0 \ (M1)$  in order to better it as a current source. For this rapport, the length was increased to $1 \  \mu m$ 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{circuit_d_cascode.png}
