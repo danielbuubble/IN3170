@@ -65,7 +65,7 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{circuit_c_fixed.png}
+    \includegraphics[width=1\textwidth]{circuit_c_fixed.png}
     \caption{Screencapture of the circuit in figure 1 c) from the lab manual simulated in Cadence.}
     \label{fig:circuitc}
 \end{figure}
@@ -78,12 +78,12 @@ As suggested in the lab manual, a DC analysis is performed with $V_C$ as a sweep
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{plot_circuit_c_FINAL.png}
+    \includegraphics[width=1\textwidth]{plot_circuit_c_FINAL.png}
     \caption{Screencapture of the DC sweep of the circuit in figure 1.}
     \label{fig:plotc}
 \end{figure}
 
-$\Delta I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. The DC sweep simulation is set to sweep from $0 \ \text{V}$ to $1.5 \ \text{V}$, as the lab manual specifies to use only up to $1.2 \ \text{V}$, the last point is chosen to be close to $1.2 \ \text{V}$.
+$\Delta I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. The DC sweep simulation is set to sweep from $0 \ \text{V}$ to $1.5 \ \text{V}$.The lab manual specifies to use only up to $1.2 \ \text{V}$, hence the last point is chosen to be close up to $1.2 \ \text{V}$.
 \begin{align}
     \Delta I_D &= 414.926 \ \text{nA}
 \end{align}
@@ -98,7 +98,23 @@ $R_{ds}$ can then simply be calculated using Ohms Law:
     r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
 \end{align}
 
-The next step is to change $\frac{W}{L}$ of $M0 \ (M1)$  in order to better it as a current source. For this rapport, the length was increased to $1 \  \mu m$ 
+The next step is to tinker with the designparameter  $\frac{W}{L}$ of $(M1)$  in order to better it as a current source. For this rapport, the length $L$ was increased to $1 \  \mu m$ from the default $60 \ nm$. The DC sweep is then performed again, resulting in the following plot: 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{plot_circuit_c_1u.jpg}
+    \caption{Screencapture of the DC sweep of the circuit in figure 1 with $L = 1 \ \mu m$ for $M1$ and $M2$.}
+    \label{fig:plotcnew}
+\end{figure}
+
+For the circuit in figure \ref{fig:plotcnew}, the same method is used to calculate $\Delta I_D$ and $\Delta V_{DS}$ as for the previous circuit. $r_{ds}$ is then calculated as:
+
+\begin{align}
+    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{20.7757 \ \text{nA}} = 4.8133 \ \text{M}\Omega
+\end{align}
+
+\subsubsection*{Implementing a voltage cascode}
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{circuit_d_cascode.png}
@@ -109,9 +125,13 @@ The next step is to change $\frac{W}{L}$ of $M0 \ (M1)$  in order to better it a
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{circuit_d_simple.png}
-    \caption{Screencapture of the circuit in figure 1 d) from the lab manual simulated in Cadence.}
+    \caption{Screencapture of the circuit in figure 1 d) from the lab manual without the voltage cascode simulated in Cadence.}
     \label{fig:circuitdsimple}
 \end{figure}
+
+\clearpage
+
+In similar fashion as the previous circuits, a DC sweep is performed for the circuit in figure \ref{fig:circuitd} and \ref{fig:circuitdsimple}. The result is shown in figure \ref{fig:plotd}.
 
 \begin{figure}[h!]
     \centering
@@ -121,4 +141,6 @@ The next step is to change $\frac{W}{L}$ of $M0 \ (M1)$  in order to better it a
 \end{figure}
 
 
+
+In figure \ref{fig:plotd}, the red curve is the simulated $I_D$ vs $V_{C}$ for the circuit in figure \ref{fig:circuitd}. The yellow curve is equivalent curve for the circuit in figure \ref{fig:circuitdsimple} plotted alongside for comparison.  
 \end{document}
