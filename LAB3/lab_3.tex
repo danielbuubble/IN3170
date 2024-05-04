@@ -47,7 +47,6 @@
         \hline
         Resistor & 120k$\Omega$ & 1 \\
         Capacitor & 390pF & 3 \\
-
         \hline
     \end{tabular}
     \caption{List of components used in task 1.}
@@ -98,8 +97,8 @@ $r_{ds}$ can then simply be calculated using Ohm's Law:
     r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
 \end{align}
 
-The next experiment is to tinker with the design parameter $\frac{W}{L}$ of $M1$ in order to improve the currenct source capability. Even in saturation, real FETs exhibit channel-length modulation, which is a phenomenon where the effective channel length shortens as $V_{DS}$ increases, leading to a non-ideal increase in current. By increasing the channel length $L$ of the transistor, the channel-length modulation is reduced, and the current source capability is improved.
-In this rapport the channel length was increased to an exaggerated $L = 1 \ \mu m$, a DC sweep is then performed again, resulting in the following plot: 
+The next task is to tinker with the design parameter $\frac{W}{L}$ of $M1$ in order to improve the currenct source capability. Even in saturation, real FETs exhibit channel-length modulation, which is a phenomenon where the effective channel length shortens as $V_{DS}$ increases, leading to a non-ideal increase in current. By increasing the channel length $L$ of the transistor, the channel-length modulation is reduced, and the current source capability is improved.
+In this rapport the channel length was increased to $L = 1 \ \mu m$. This is an exaggeration of what a normal channel length would be, but will highlight the difference more. A DC sweep is then performed again, resulting in the following plot: 
 
 \begin{figure}[h!]
     \centering
@@ -115,7 +114,7 @@ For the circuit in figure \ref{fig:plotcnew}, the same method is used to calcula
 \end{align}
 
 
-In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The new $r_{ds}$ is higher than the previous, which indicated a better approximation of an ideal current source.
+In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The new $r_{ds}$ is higher than the previous, which indicates a better approximation of an ideal current source.
 \subsubsection*{Implementing a voltage cascode}
 
 \begin{figure}[h!]
@@ -145,6 +144,8 @@ In similar fashion as the previous circuits, a DC sweep is performed for the cir
 
 In figure \ref{fig:plotd}, the red curve is the simulated $I_D$ vs $V_{C}$ for the circuit in figure \ref{fig:circuitd}. The yellow curve is equivalent curve for the circuit in figure \ref{fig:circuitdsimple} plotted alongside for comparison.  
 
+One can see that the two curves starts off close to identical. As $V_{C}$ increases, the current in the circuit starts with a sharp rise, that flattens out as the transistor reaches the saturation region. The cascode kicks in around 0.4 V, and the current flattens out more for that circuit. This is because the cascode transistor $M3$ also reaches saturation.
 
+Some trade-offs of using a cascode is that the circuit will have a reduced voltage headroom. Meaning there is a minimum voltage required for the circuit to operate properly. This is because the cascode transistor $M3$ will not be in saturation if the voltage is too low. The cascode also increases the complexity of the circuit, and will require more power to operate.
 
 \end{document}
