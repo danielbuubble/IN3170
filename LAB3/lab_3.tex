@@ -93,12 +93,13 @@ The same method is used to calculate $\Delta V_{DS}$, however as $V_C$ is the sw
 \begin{align}
     \Delta V_{DS} = 1 \ \text{V}
 \end{align}
-$R_{ds}$ can then simply be calculated using Ohm's Law:
+$r_{ds}$ can then simply be calculated using Ohm's Law:
 \begin{align}
     r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
 \end{align}
 
-The next experiment is to tinker with the design parameter $\frac{W}{L}$ of $(M1)$  in order to improve the currenct source capability. For this rapport, the length $L$ was increased to $1 \  \mu m$ from the default $60 \ nm$. The DC sweep is then performed again, resulting in the following plot: 
+The next experiment is to tinker with the design parameter $\frac{W}{L}$ of $M1$ in order to improve the currenct source capability. Even in saturation, real FETs exhibit channel-length modulation, which is a phenomenon where the effective channel length shortens as $V_{DS}$ increases, leading to a non-ideal increase in current. By increasing the channel length $L$ of the transistor, the channel-length modulation is reduced, and the current source capability is improved.
+In this rapport the channel length was increased to an exaggerated $L = 1 \ \mu m$, a DC sweep is then performed again, resulting in the following plot: 
 
 \begin{figure}[h!]
     \centering
@@ -107,12 +108,14 @@ The next experiment is to tinker with the design parameter $\frac{W}{L}$ of $(M1
     \label{fig:plotcnew}
 \end{figure}
 
-For the circuit in figure \ref{fig:plotcnew}, the same method is used to calculate $\Delta I_D$ and $\Delta V_{DS}$ as for the previous circuit. $r_{ds}$ is then calculated as:
+For the circuit in figure \ref{fig:plotcnew}, the same method is used to calculate $\Delta I_D$ and $\Delta V_{DS}$ as for the previous circuit. $r_{ds}$ is then:
 
 \begin{align}
     r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{20.7757 \ \text{nA}} = 4.8133 \ \text{M}\Omega
 \end{align}
 
+
+In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The new $r_{ds}$ is higher than the previous, which indicated a better approximation of an ideal current source.
 \subsubsection*{Implementing a voltage cascode}
 
 \begin{figure}[h!]
