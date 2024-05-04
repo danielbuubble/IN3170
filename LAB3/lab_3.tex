@@ -56,11 +56,20 @@
 
 
 \section{Task 2}
+
+\subsubsection*{Objective}
+The objective of this task is to design a current source using a FET in saturation. By simulating the circuit in Cadence one can plot the $I_D$ vs $V_{DS}$ curve and calculate the output resistance $r_{ds}$ of the current source. Further, changing the design parameter $\frac{W}{L}$ of the FET, or adding a voltage cascode to the circuit is carried out to improve the current source capability.
+
+\subsubsection*{Theory}
 In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throughout the circuit, despite changes to $V_{DS}$.
 
 A Field-Effect Transistor (FET) operating in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because when  $V_{DS}$ approches the saturation region it becomes high enough that it maxes out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
 
 In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
+
+ \clearpage
+
+\subsubsection*{Designing a current source}
 
 \begin{figure}[h!]
     \centering
@@ -69,11 +78,9 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
     \label{fig:circuitc}
 \end{figure}
 
-The bias current is implementet as a current mirror, consisting of $M2$ and $I4$, which sets the current that flows through $M1$.
+This design differs a bit from figure 1 d) in the lab manual, following the suggested method of the manual. The bias current is implementet as a current mirror, consisting of $M2$ and $I4$, which sets the current that flows through $M1$. Instead of a capactior in parallel to $M1$, and a clock signal to $M2$, a DC voltage source is used to sweep the voltage $V_C$ in a range simulating the $V_{DS}$ of $M1$. 
 
 \clearpage 
-
-As suggested in the lab manual, a DC analysis is performed with $V_C$ as a sweep parameter. This results in the following plot:
 
 \begin{figure}[h!]
     \centering
@@ -115,18 +122,21 @@ For the circuit in figure \ref{fig:plotcnew}, the same method is used to calcula
 
 
 In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The new $r_{ds}$ is higher than the previous, which indicates a better approximation of an ideal current source.
+
+\clearpage
+
 \subsubsection*{Implementing a voltage cascode}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{circuit_d_cascode.png}
+    \includegraphics[width=0.7\textwidth]{circuit_d_cascode.png}
     \caption{Screencapture of the circuit in figure 1 d) from the lab manual simulated in Cadence.}
     \label{fig:circuitd}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{circuit_d_simple.png}
+    \includegraphics[width=0.7\textwidth]{circuit_d_simple.png}
     \caption{Screencapture of the circuit in figure 1 d) from the lab manual without the voltage cascode simulated in Cadence.}
     \label{fig:circuitdsimple}
 \end{figure}
@@ -144,8 +154,8 @@ In similar fashion as the previous circuits, a DC sweep is performed for the cir
 
 In figure \ref{fig:plotd}, the red curve is the simulated $I_D$ vs $V_{C}$ for the circuit in figure \ref{fig:circuitd}. The yellow curve is equivalent curve for the circuit in figure \ref{fig:circuitdsimple} plotted alongside for comparison.  
 
-One can see that the two curves starts off close to identical. As $V_{C}$ increases, the current in the circuit starts with a sharp rise, that flattens out as the transistor reaches the saturation region. The cascode kicks in around 0.4 V, and the current flattens out more for that circuit. This is because the cascode transistor $M3$ also reaches saturation.
+Initially one can observe the two curves starts off nearly identical. As $V_{C}$ increases, the current in both circuits begins with a sharp rise but starts to flatten as the transistors approach the saturation region. The cascode configuration, however, shows a distinct change in behavior around $0.4$ V where the current flattens out even more. This enhanced flattening is due to the cascode transistor $M3$, which further restricts the increase in current by also entering saturation and increasing the circuit's output impedance.
 
-Some trade-offs of using a cascode is that the circuit will have a reduced voltage headroom. Meaning there is a minimum voltage required for the circuit to operate properly. This is because the cascode transistor $M3$ will not be in saturation if the voltage is too low. The cascode also increases the complexity of the circuit, and will require more power to operate.
+Some trade-offs associated with using a cascode configuration include a reduced voltage headroom. That is, the circuit requires a minimum voltage drop across each transistor to ensure that both are operating in saturation. Essentially, the drain-source voltage $V_{DS}$ of the cascode transistor $M3$ must be sufficiently high for it to remain in saturation. A cascode circuit also adds complexity to the system that might be unnecessary. If the applied voltage range is small, there will be no benefit to using a cascode configuration, as the cascode transistor will not enter saturation.
 
 \end{document}
