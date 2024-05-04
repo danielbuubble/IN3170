@@ -59,7 +59,7 @@
 \section{Task 2}
 In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throughout the circuit, despite changes to $V_{DS}$.
 
-A Field-Effect Transistor (FET) operating in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because $V_{DS}$ approching the saturation region is high enough that it has maxed out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
+A Field-Effect Transistor (FET) operating in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because when  $V_{DS}$ approches the saturation region it becomes high enough that it maxes out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
 
 In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
 
@@ -83,7 +83,7 @@ As suggested in the lab manual, a DC analysis is performed with $V_C$ as a sweep
     \label{fig:plotc}
 \end{figure}
 
-$\Delta I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. The DC sweep simulation is set to sweep from $0 \ \text{V}$ to $1.5 \ \text{V}$.The lab manual specifies to use only up to $1.2 \ \text{V}$, hence the last point is chosen to be close up to $1.2 \ \text{V}$.
+$\Delta I_D$ is calculated as the difference between two points on the \textit{most linear} part of the curve. In figure \ref{fig:plotc}, this is chosen to be a segment at the end of the curve. The DC sweep simulation is set to sweep from $0 \ \text{V}$ to $1.5 \ \text{V}$. The lab manual specifies to use only up to $1.2 \ \text{V}$, hence the last point is chosen to be close up to $1.2 \ \text{V}$.
 \begin{align}
     \Delta I_D &= 414.926 \ \text{nA}
 \end{align}
@@ -93,16 +93,16 @@ The same method is used to calculate $\Delta V_{DS}$, however as $V_C$ is the sw
 \begin{align}
     \Delta V_{DS} = 1 \ \text{V}
 \end{align}
-$R_{ds}$ can then simply be calculated using Ohms Law:
+$R_{ds}$ can then simply be calculated using Ohm's Law:
 \begin{align}
     r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
 \end{align}
 
-The next step is to tinker with the designparameter  $\frac{W}{L}$ of $(M1)$  in order to better it as a current source. For this rapport, the length $L$ was increased to $1 \  \mu m$ from the default $60 \ nm$. The DC sweep is then performed again, resulting in the following plot: 
+The next experiment is to tinker with the design parameter $\frac{W}{L}$ of $(M1)$  in order to improve the currenct source capability. For this rapport, the length $L$ was increased to $1 \  \mu m$ from the default $60 \ nm$. The DC sweep is then performed again, resulting in the following plot: 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1\textwidth]{plot_circuit_c_1u.jpg}
+    \includegraphics[width=1\textwidth]{plot_circuit_d_FINAL.png}
     \caption{Screencapture of the DC sweep of the circuit in figure 1 with $L = 1 \ \mu m$ for $M1$ and $M2$.}
     \label{fig:plotcnew}
 \end{figure}
@@ -131,7 +131,7 @@ For the circuit in figure \ref{fig:plotcnew}, the same method is used to calcula
 
 \clearpage
 
-In similar fashion as the previous circuits, a DC sweep is performed for the circuit in figure \ref{fig:circuitd} and \ref{fig:circuitdsimple}. The result is shown in figure \ref{fig:plotd}.
+In similar fashion as the previous circuits, a DC sweep is performed for the circuit in figure \ref{fig:circuitd} and \ref{fig:circuitdsimple}:
 
 \begin{figure}[h!]
     \centering
@@ -140,7 +140,8 @@ In similar fashion as the previous circuits, a DC sweep is performed for the cir
     \label{fig:plotd}
 \end{figure}
 
-
-
 In figure \ref{fig:plotd}, the red curve is the simulated $I_D$ vs $V_{C}$ for the circuit in figure \ref{fig:circuitd}. The yellow curve is equivalent curve for the circuit in figure \ref{fig:circuitdsimple} plotted alongside for comparison.  
+
+
+
 \end{document}
