@@ -57,6 +57,14 @@
     \label{tab:bom}
 \end{table}
 
+\subsection{Objective}
+The objective of this task is to build two similar current source circuits, one with a CG current conveyor and one without, and observe the voltage discharge of the capacitor when the clock signal of the pFET transistors M2 goes low.  
+
+\subsection{Theory}
+
+\subsection{A "bad" current source}
+
+Using the IC CD4007UBE we connected pin 14 to our $V_{DD}$ of 5V so as to give voltage to the Q1 pFET and the bulk of the pFETs.
 
 
 \section{Task 2}
@@ -64,12 +72,14 @@
 \subsubsection*{Objective}
 The objective of this task is to design a current source using a FET in saturation. By simulating the circuit in Cadence one can plot the $I_D$ vs $V_{DS}$ curve and calculate the output resistance $r_{ds}$ of the current source. Further, changing the design parameter $\frac{W}{L}$ of the FET, or adding a voltage cascode to the circuit is carried out to improve the current source capability.
 
-\subsubsection*{Theory}
+\subsection*{Theory}
+
 In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throughout the circuit, despite changes to $V_{DS}$.
 
 A Field-Effect Transistor (FET) operating in the saturation region exhibits the same characteristics as an ideal current source. This can be seen from the $I_D$ vs $V_{DS}$ curve in the saturation region, where the current is almost constant. This is because when  $V_{DS}$ approches the saturation region it becomes high enough that it maxes out the number of charge carriers that can contribute to current flow, making the gate voltage the primarily factor to the current flow.
 
 In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
+
 
  \clearpage
 
