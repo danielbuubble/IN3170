@@ -47,6 +47,10 @@
         \hline
         Resistor & 120k$\Omega$ & 1 \\
         Capacitor & 390pF & 3 \\
+        Hex inverter & IC CD4007UBE & 2 \\
+        Oscilloscope & HP54622 & 1 \\
+        Waveform generator  & HP33120 & 1\\
+        Voltage source & HPE3631 & 1 \\
         \hline
     \end{tabular}
     \caption{List of components used in task 1.}
@@ -104,7 +108,7 @@ $r_{ds}$ can then simply be calculated using Ohm's Law:
     r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
 \end{align}
 
-The next task is to tinker with the design parameter $\frac{W}{L}$ of $M1$ in order to improve the currenct source capability. Even in saturation, real FETs exhibit channel-length modulation, which is a phenomenon where the effective channel length shortens as $V_{DS}$ increases, leading to a non-ideal increase in current. By increasing the channel length $L$ of the transistor, the channel-length modulation is reduced, and the current source capability is improved.
+The next task is to tinker with the design parameter $\frac{W}{L}$ of $M1$ in order to improve the current source capability. Even in saturation, real FETs exhibit channel-length modulation, which is a phenomenon where the effective channel length shortens as $V_{DS}$ increases, leading to a non-ideal increase in current. By increasing the channel length $L$ of the transistor, the channel-length modulation is reduced, and the current source capability is improved.
 In this rapport the channel length was increased to $L = 1 \ \mu m$. This is an exaggeration of what a normal channel length would be, but will highlight the difference more. A DC sweep is then performed again, resulting in the following plot: 
 
 \begin{figure}[h!]
