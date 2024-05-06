@@ -93,7 +93,7 @@ To get the discharge curve we used the $I = \frac{V}{dt}C$ relation to get the t
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.7\textwidth]{1a.jpg}
+    \includegraphics[width=1\textwidth]{1aaa.jpg}
     \caption{Plot of the circuit in figure 1 a) in the lab manual with the ideal discharge curve in yellow.}
     \label{fig:task1a}
 \end{figure}
@@ -105,7 +105,7 @@ As seen in \ref{fig:task1a} the actual discharge curve is not linear, but rather
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.7\textwidth]{1b.jpg}
+    \includegraphics[width=1\textwidth]{1ba.jpg}
     \caption{Plot of the circuit in figure 1 b) in the lab manual with the ideal discharge curve in yellow.}
     \label{fig:task1b}
 \end{figure}
@@ -124,23 +124,38 @@ for the saturation region, aka when $V_{DS} \geq V_{GS} - V_{TH}$, and $V_{GS} \
     I_D = \mu_n \cdot C_{ox} \cdot \frac{W}{L} \cdot (V_{GS} - V_{TH} - \frac{V_{DS}}{2}) \cdot V_{DS}
 \end{align}
 
-From the equations above we can observe how $V_{DS}$ affects the current differently in triode region compared to saturation region. In the saturation region, the impact of $V_{DS}$ is negliable, while in the triode region $V_{DS}$ is squared and as a result more dominant. This is why the curve in \ref{fig:task1b} starts to deviate from the ideal curve around 1.2V and has an exponential decay. This also explains why a bias voltage of 3V is needed to get the actual curve to follow the ideal curve down to 0V as the saturated $I_D$ value most likely is $8.33\mu A$ when $V_{GS} = 3V$.
+From the equations above we can observe how $V_{DS}$ affects the current differently in the triode region compared to the saturation region. In the saturation region, the impact of $V_{DS}$ is negliable, while in the triode region $V_{DS}$ is squared and as a result more dominant. This is why the curve in \ref{fig:task1b} starts to deviate from the ideal curve around 3.3V and has an exponential decay. This also explains why a bias voltage of 3V is needed to get the actual curve to follow the ideal curve down to 0V as the saturated $I_D$ value most likely is $8.33\mu A$ when $V_{GS} = 3V$. 
+As we don't have the exact values for the nFET used we can't calculate, but if the nFET has a threshold voltage of around 1.3V the deviation from the ideal curve makes sense as 
 
-If we want to calculate the total output resistance $R_O$ of the discharge curve we have to calculate the slope of the curve where it is linear, the change in voltage, but also the change in current in these same points. The output resistance is then given by: 
+\begin{align}
+    V_{GS} - V_{TH} = 3V - 1.3V = 1.7V
+\end{align}
+
+which is the difference between $V_{dd}$ and where the curve starts to deviate.
+\clearpage
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{1bb.jpg}
+    \caption{Plot of the circuit in figure 1 b) in the lab manual zoomed in at the operating region.}
+    \label{fig:task1bb}
+\end{figure}
+
+If we want to calculate the total output resistance $R_O$ of the discharge curve we have to calculate the slope of the curve where it is linear, the change in voltage, but also the change in current in these same points. We use the data points from figure \ref{fig:task1bb}. The output resistance is then given by: 
 
 \begin{align}
     R_O &= \frac{\Delta V}{\Delta I} \\
         &= \frac{V_1 - V_2}{\Delta I_1 - \Delta I_2}\\
-        &= \frac{V_1 - V_2}{C \cdot V_{I_1}/dt - C \cdot V_{I_2}/dt}
-        &=
+        &= \frac{V_1 - V_2}{C \cdot V_{I_1}/dt - C \cdot V_{I_2}/dt}\\
+        &= \frac{(0.00017 - 4.0404)V}{1.17nF(\frac{(3.9899 - 4.09091)V}{(0.1418 - 0.1276)ms} -\frac{(3.73737 - 3.83838)V}{(0.1777273 - 0.163091)ms})}\\
+        &= 16M\Omega
 \end{align}
 
-
-\clearpage
+Obviosly this is a very rough estimate as the curve is not truly linear and the noise from the measurements makes it hard to get a proper data point, but it gives a good ball park for the output resistance of the circuit.
 
 \section{Task 2}
 
-\subsubsection{Objective}
+\subsection{Objective}
 The objective of this task is to improve a current source using a FET in saturation. By simulating the circuit in Cadence one can plot the $I_D$ vs $V_{DS}$ curve and calculate the output resistance $r_{ds}$ of the current source. Further, changing the design parameter $\frac{W}{L}$ of the FET, or adding a voltage cascode to the circuit is carried out to improve the current source capability.
 
 \subsection{Theory}
