@@ -61,19 +61,18 @@
 \subsection{Objective}
 The objective of this task is to build two similar current source circuits, one with a CG current conveyor and one without, and observe the voltage discharge of the capacitor when the clock signal of the pFET transistors M2 goes low.  
 
-\subsection{Theory}
-
 
 \subsection{Constructing the circuits}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{LAB3/in3170lab3task1circuit.jpg}
+    \includegraphics[scale=0.5]{in3170lab3task1circuit.jpg}
     \caption{The two current source circuits used}
     \label{fig:enter-label}
 \end{figure}
 
 First, we will recreate the circuit from Figure 1 a) in the lab manual. Using the IC CD4007UBE we connected pin 14 to our $V_{DD}$ of 5V so as to give voltage to the Q1 pFET and the bulk of the pFETs. We connect pin 13, the source for pFETs, to the resistor and capacitors in parallel, and then to GND. Here we have replaced the $100k\Omega$ resistor with a $120k\Omega$. And the $1\mu F$ capacitor with three $390pF$ capacitors in parallel, totaling to $1.17nF$. This difference is significant as it is approximately three orders of magnitude less than the initial design value. Then, through the gate at pin 6, we connect a $5V_{pp}$ CLK signal.
+
 
 To make the circuit from Figure 1 b) in the lab manual, connect the $V_{DD}$ to pin 14. Pin 13 is connected to the Q2 nFET through the drain at pin 5, the source at pin 4 is connected to the $120K\Omega$ resistor and further to GND. We apply a voltage ($V_{bias\_cascode}$) to the nFET at the pin 3 gate. Pin 13 is also connected to the capacitors, forming a parallel with the resistor and nFET, and then connected to GND. Then, connect the Q1 gate at pin 6 to the CLK signal and pin 7, the bulk of the nFETs, to GND.
 
@@ -98,7 +97,7 @@ To get the discharge curve we used the $I = \frac{V}{dt}C$ relation to get the t
     \label{fig:task1a}
 \end{figure}
 
-As seen in \ref{} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| \lt |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
+As seen in \ref{fig:task1a} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| \lt |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
 
 \begin{figure}[h!]
     \centering
