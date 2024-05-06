@@ -61,9 +61,6 @@
 \subsection{Objective}
 The objective of this task is to build two similar current source circuits, one with a CG current conveyor and one without, and observe the voltage discharge of the capacitor when the clock signal of the pFET transistors M2 goes low.  
 
-\subsection{Theory}
-
-
 \subsection{Constructing the circuits}
 
 \begin{figure}[H]
@@ -98,7 +95,7 @@ To get the discharge curve we used the $I = \frac{V}{dt}C$ relation to get the t
     \label{fig:task1a}
 \end{figure}
 
-As seen in \ref{} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| \lt |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
+As seen in \ref{fig:task1a} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| \lt |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
 
 \begin{figure}[h!]
     \centering
