@@ -77,6 +77,49 @@ First, we will recreate the circuit from Figure 1 a) in the lab manual. Using th
 
 To make the circuit from Figure 1 b) in the lab manual, connect the $V_{DD}$ to pin 14. Pin 13 is connected to the Q2 nFET through the drain at pin 5, the source at pin 4 is connected to the $120K\Omega$ resistor and further to GND. We apply a voltage ($V_{bias\_cascode}$) to the nFET at the pin 3 gate. Pin 13 is also connected to the capacitors, forming a parallel with the resistor and nFET, and then connected to GND. Then, connect the Q1 gate at pin 6 to the CLK signal and pin 7, the bulk of the nFETs, to GND.
 
+The voltage on C would be a constant voltage, as the current source would be able to supply a constant current to the capacitor. The voltage on the capacitor would then be given by the formula $V = \frac{Q}{C}$, where $Q$ is the charge on the capacitor and $C$ is the capacitance of the capacitor. The charge on the capacitor is given by $Q = I \cdot t$, where $I$ is the current and $t$ is the time. As the current is constant, the charge on the capacitor will be linear with time, and the voltage on the capacitor will be linear with time.
+
+As the 100k$\Omega$ resistor was not available at the lab we used a 120k$\Omega$ instead. As per lab instructions we calculated the current through the resitor at 1V to be 
+
+\begin{align}
+    I = \frac{V}{R} = \frac{1V}{120k\Omega} = 8.33\mu A
+\end{align}
+
+To get the discharge curve we used the $I = \frac{V}{dt}C$ relation to get the time it would take for the voltage to drop to 0V, which would be the time it takes for the capacitor to discharge through the resistor.
+
+\begin{align}
+    I = \frac{V}{dt}C \Rightarrow dt = \frac{V}{I} C = \frac{5V}{8.33\mu A}\cdot 3*0.39nF = 0.702ms
+\end{align}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{1a.jpg}
+    \caption{Plot of the circuit in figure 1 a) in the lab manual with the ideal discharge curve in yellow.}
+    \label{fig:task1a}
+\end{figure}
+
+As seen in \ref{} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| \lt |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{1b.jpg}
+    \caption{Plot of the circuit in figure 1 b) in the lab manual with the ideal discharge curve in yellow.}
+    \label{fig:task1b}
+\end{figure}
+
+In stark contrast to the previous circuit, the circuit in \ref{fig:task1b} follows the theoretical curve down to what we observe to be around 1.2V when we apply 3V on the gate of M1. This is because of the relations $I_D$ and $V_{DS}$in saturation and triode region. We have that:
+
+\begin{align}
+    I_D = \frac{1}{2} \cdot \mu_n \cdot C_{ox} \cdot \frac{W}{L} \cdot (V_{GS} - V_{TH})^2(1 - \lambda \cdot V_{DS})
+\end{align}
+
+for the saturation region, aka when $V_{DS} \geq V_{GS} - V_{TH}$, and $V_{GS} \geq V_{TH}$. For the triode region, aka when $V_{DS} \lt V_{GS} - V_{TH}$, and $V_{GS} \geq V_{TH}$, we have that:
+
+\begin{align}
+    I_D = \mu_n \cdot C_{ox} \cdot \frac{W}{L} \cdot (V_{GS} - V_{TH} - \frac{V_{DS}}{2}) \cdot V_{DS}
+\end{align}
+
+From the equations above we can observe 
 
 \section{Task 2}
 
