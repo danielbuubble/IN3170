@@ -36,7 +36,7 @@
 
 \begin{document}
 \maketitle
-
+\tableofcontents
 
 \section{Task 1}
 \subsection{Equipment}
@@ -167,7 +167,7 @@ A Field-Effect Transistor (FET) operating in the saturation region exhibits the 
 In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
 
 
-\subsubsection{Designing a current source}
+\subsubsection{Circuit 1 c)}
 
 \begin{figure}[h!]
     \centering
@@ -176,9 +176,7 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
     \label{fig:circuitc}
 \end{figure}
 
-\clearpage 
-
-This design differs a bit from figure 1 d) in the lab manual, following the suggested method of the manual. The bias current is implementet as a current mirror, consisting of $M2$ and $I1$, which sets the current that flows through $M1$. Instead of a capactior in parallel to $M1$, and a clock signal to $M2$, a DC voltage source is used to sweep the voltage $V_C$ in a range simulating the $V_{DS}$ of $M1$. 
+This design differs a bit from figure 1 c) in the lab manual, following the suggested method of the manual. The bias current is implementet as a current mirror, consisting of $M2$ and $I1$, which sets the current that flows through $M1$. Instead of a capactior in parallel to $M1$, and a clock signal to $M2$, a DC voltage source is used to sweep the voltage $V_C$ in a range simulating the $V_{DS}$ of $M1$. 
 
 
 
@@ -201,7 +199,7 @@ The same method is used to calculate $\Delta V_{DS}$, however as $V_C$ is the sw
 \end{align}
 $r_{ds}$ can then simply be calculated using Ohm's Law:
 \begin{align}
-    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.4007 \ \text{M}\Omega
+    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{414.926 \ \text{nA}} = 2.401 \ \text{M}\Omega
 \end{align}
 
 The next task is to tinker with the design parameter $\frac{W}{L}$ of $M1$ in order to improve the current source capability. Even in saturation, real FETs exhibit channel-length modulation, which is a phenomenon where the effective channel length shortens as $V_{DS}$ increases, leading to a non-ideal increase in current. By increasing the channel length $L$ of the transistor, the channel-length modulation is reduced, and the current source capability is improved.
@@ -217,15 +215,15 @@ In this rapport the channel length was increased to $L = 1 \ \mu m$. This is an 
 For the circuit in figure \ref{fig:plotcnew}, the same method is used to calculate $\Delta I_D$ and $\Delta V_{DS}$ as for the previous circuit. $r_{ds}$ is then:
 
 \begin{align}
-    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{20.7757 \ \text{nA}} = 4.8133 \ \text{M}\Omega
+    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{20.776 \ \text{nA}} = 4.813 \ \text{M}\Omega
 \end{align}
 
 
-In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The new $r_{ds}$ is higher than the previous, which indicates a better approximation of an ideal current source.
+In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The new $r_{ds}$ is higher than the previous, which indicates a better approximation of an ideal current source. A trade off of increasing the channel length to be aware of is that it takes slightly longer for the transistor to reach saturation, decreasing the range of voltages where the current is linear.
 
 \clearpage
 
-\subsubsection{Implementing a voltage cascode}
+\subsubsection{Circuit 1 d)}
 
 \begin{figure}[h!]
     \centering
@@ -247,13 +245,18 @@ In similar fashion as the previous circuits, a DC sweep is performed for the cir
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=1\textwidth]{plot_circuit_d_dc_sweep_omskjert.jpg}
-    \caption{Screencapture of the DC sweep of both circuits in figure 1 d).}
+    \includegraphics[width=1\textwidth]{plot_circuit_d_dc_sweep_Final.jpg}
+    \caption{Screencapture of the DC sweep of circuits in figure \ref{fig:circuitd} and \ref{fig:circuitdsimple}.}
     \label{fig:plotd}
 \end{figure}
 
-In figure \ref{fig:plotd}, the red curve is the simulated $I_D$ vs $V_{C}$ for the circuit in figure \ref{fig:circuitd}. The yellow curve is equivalent curve for the circuit in figure \ref{fig:circuitdsimple} plotted alongside for comparison.  
+The output resistance $r_{ds}$ is calculated in the same manner as for the previous circuits. For the circuit in figure \ref{fig:circuitd}:
+\begin{align}
+    r_{ds} = \frac{\Delta V_{DS}}{\Delta  I_D} = \frac{ 1 \ \text{V}}{349.466 \ \text{pA}} = 2861.51 \ \text{M}\Omega
+\end{align}
 
+In figure \ref{fig:plotd}, the red curve is the simulated $I_D$ vs $V_{C}$ for the circuit in figure \ref{fig:circuitd}. The yellow curve is equivalent curve for the circuit in figure \ref{fig:circuitdsimple} plotted alongside for comparison.  
+    
 Initially one can observe the two curves starts off nearly identical. As $V_{C}$ increases, the current in both circuits begins with a sharp rise but starts to flatten as the transistors approach the saturation region. The cascode configuration, however, shows a distinct change in behavior around $0.4$ V where the current flattens out even more. This enhanced flattening is due to the cascode transistor $M3$, which further restricts the increase in current by also entering saturation and increasing the circuit's output impedance.
 
 Some trade-offs associated with using a cascode configuration include a reduced voltage headroom. That is, the circuit requires a minimum voltage drop across each transistor to ensure that both are operating in saturation. Essentially, the drain-source voltage $V_{DS}$ of the cascode transistor $M3$ must be sufficiently high for it to remain in saturation. A cascode circuit also adds complexity to the system that might be unnecessary. If the applied voltage range is small, there will be no benefit to using a cascode configuration, as the cascode transistor will not enter saturation.
