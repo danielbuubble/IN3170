@@ -76,9 +76,10 @@ First, we will recreate the circuit from Figure 1 a) in the lab manual. Using th
 
 To make the circuit from Figure 1 b) in the lab manual, connect the $V_{DD}$ to pin 14. Pin 13 is connected to the Q2 nFET through the drain at pin 5, the source at pin 4 is connected to the $120K\Omega$ resistor and further to GND. We apply a voltage ($V_{bias\_cascode}$) to the nFET at the pin 3 gate. Pin 13 is also connected to the capacitors, forming a parallel with the resistor and nFET, and then connected to GND. Then, connect the Q1 gate at pin 6 to the CLK signal and pin 7, the bulk of the nFETs, to GND.
 
-The voltage on C would be a constant voltage, as the current source would be able to supply a constant current to the capacitor. The voltage on the capacitor would then be given by the formula $V = \frac{Q}{C}$, where $Q$ is the charge on the capacitor and $C$ is the capacitance of the capacitor. The charge on the capacitor is given by $Q = I \cdot t$, where $I$ is the current and $t$ is the time. As the current is constant, the charge on the capacitor will be linear with time, and the voltage on the capacitor will be linear with time.
 
-As the 100k$\Omega$ resistor was not available at the lab we used a 120k$\Omega$ instead. As per lab instructions we calculated the current through the resitor at 1V to be 
+\subsection{Circuit 1 a)}
+As one of the key goals of this task is to observe the discharge of C with a constant current source it is important to note how the voltage discharge on C would look like in this ideal scenario. The voltage on the capacitor is given by the formula $V = \frac{Q}{C}$, where $Q$ is the charge on the capacitor and $C$ is the capacitance of the capacitor. The charge on the capacitor is given by $Q = I \cdot t$, where $I$ is the current and $t$ is the time. As the current is constant, the charge on the capacitor will be linear with time implying that the voltage on the capacitor will be linear with time.
+As per lab instructions we calculated the current through our resitor at 1V to be 
 
 \begin{align}
     I = \frac{V}{R} = \frac{1V}{120k\Omega} = 8.33\mu A
@@ -97,7 +98,10 @@ To get the discharge curve we used the $I = \frac{V}{dt}C$ relation to get the t
     \label{fig:task1a}
 \end{figure}
 
-As seen in \ref{fig:task1a} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| \lt |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
+As seen in \ref{fig:task1a} the actual discharge curve is not linear, but rather exponential as per a capacitors normal discharge characteristics. This is due to the fact that M2s gate voltage is 0V when the clocked signal is low which gives a $|V_{GS}| < |V_{TH}|$, moving the pFET from saturation to cutoff. With no voltage at the gate, the pFET will not conduct any current, and the capacitor will discharge through the resistor. The voltage on the capacitor will then be given by $V = V_{DD} \cdot e^{-\frac{t}{RC}}$, where $R$ is the resistance and $C$ is the capacitance of the capacitor.
+
+
+\clearpage
 
 \begin{figure}[h!]
     \centering
@@ -106,26 +110,40 @@ As seen in \ref{fig:task1a} the actual discharge curve is not linear, but rather
     \label{fig:task1b}
 \end{figure}
 
-In stark contrast to the previous circuit, the circuit in \ref{fig:task1b} follows the theoretical curve down to what we observe to be around 1.2V when we apply 3V on the gate of M1. This is because of the relations $I_D$ and $V_{DS}$in saturation and triode region. We have that:
+
+\subsection{Circuit 1 b)}
+In stark contrast to the previous circuit, the circuit in \ref{fig:task1b} follows the theoretical curve down to what we observe to be around 1.2V when we apply 3V on the gate of M1. This is a result of how $V_{DS}$ interacts with $I_D$ in saturation and triode region. We have that:
 
 \begin{align}
     I_D = \frac{1}{2} \cdot \mu_n \cdot C_{ox} \cdot \frac{W}{L} \cdot (V_{GS} - V_{TH})^2(1 - \lambda \cdot V_{DS})
 \end{align}
 
-for the saturation region, aka when $V_{DS} \geq V_{GS} - V_{TH}$, and $V_{GS} \geq V_{TH}$. For the triode region, aka when $V_{DS} \lt V_{GS} - V_{TH}$, and $V_{GS} \geq V_{TH}$, we have that:
+for the saturation region, aka when $V_{DS} \geq V_{GS} - V_{TH}$, and $V_{GS} \geq V_{TH}$. For the triode region, aka when $V_{DS} < V_{GS} - V_{TH}$, and $V_{GS} \geq V_{TH}$, we have that:
 
 \begin{align}
     I_D = \mu_n \cdot C_{ox} \cdot \frac{W}{L} \cdot (V_{GS} - V_{TH} - \frac{V_{DS}}{2}) \cdot V_{DS}
 \end{align}
 
-From the equations above we can observe 
+From the equations above we can observe how $V_{DS}$ affects the current differently in triode region compared to saturation region. In the saturation region, the impact of $V_{DS}$ is negliable, while in the triode region $V_{DS}$ is squared and as a result more dominant. This is why the curve in \ref{fig:task1b} starts to deviate from the ideal curve around 1.2V and has an exponential decay. This also explains why a bias voltage of 3V is needed to get the actual curve to follow the ideal curve down to 0V as the saturated $I_D$ value most likely is $8.33\mu A$ when $V_{GS} = 3V$.
+
+If we want to calculate the total output resistance $R_O$ of the discharge curve we have to calculate the slope of the curve where it is linear, the change in voltage, but also the change in current in these same points. The output resistance is then given by: 
+
+\begin{align}
+    R_O &= \frac{\Delta V}{\Delta I} \\
+        &= \frac{V_1 - V_2}{\Delta I_1 - \Delta I_2}\\
+        &= \frac{V_1 - V_2}{C \cdot V_{I_1}/dt - C \cdot V_{I_2}/dt}
+        &=
+\end{align}
+
+
+\clearpage
 
 \section{Task 2}
 
-\subsubsection*{Objective}
+\subsubsection{Objective}
 The objective of this task is to improve a current source using a FET in saturation. By simulating the circuit in Cadence one can plot the $I_D$ vs $V_{DS}$ curve and calculate the output resistance $r_{ds}$ of the current source. Further, changing the design parameter $\frac{W}{L}$ of the FET, or adding a voltage cascode to the circuit is carried out to improve the current source capability.
 
-\subsection*{Theory}
+\subsection{Theory}
 
 In an ideal current source, the output current is independent of the voltage across the terminals. I.e. the current source maintains the same current throughout the circuit, despite changes to $V_{DS}$.
 
@@ -134,9 +152,7 @@ A Field-Effect Transistor (FET) operating in the saturation region exhibits the 
 In the plot, the curve will flatten out in this region. In a practical FET, the curve will not be completely flat (indicating that the current is not completely constant), but it will give a good approximation of an ideal current source.
 
 
- \clearpage
-
-\subsubsection*{Designing a current source}
+\subsubsection{Designing a current source}
 
 \begin{figure}[h!]
     \centering
@@ -145,9 +161,11 @@ In the plot, the curve will flatten out in this region. In a practical FET, the 
     \label{fig:circuitc}
 \end{figure}
 
+\clearpage 
+
 This design differs a bit from figure 1 d) in the lab manual, following the suggested method of the manual. The bias current is implementet as a current mirror, consisting of $M2$ and $I1$, which sets the current that flows through $M1$. Instead of a capactior in parallel to $M1$, and a clock signal to $M2$, a DC voltage source is used to sweep the voltage $V_C$ in a range simulating the $V_{DS}$ of $M1$. 
 
-\clearpage 
+
 
 \begin{figure}[h!]
     \centering
@@ -192,7 +210,7 @@ In a ideal current source, the output resistance (or $V_{ds}$) is infinite. The 
 
 \clearpage
 
-\subsubsection*{Implementing a voltage cascode}
+\subsubsection{Implementing a voltage cascode}
 
 \begin{figure}[h!]
     \centering
