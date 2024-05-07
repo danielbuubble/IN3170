@@ -34,6 +34,7 @@
 
 \begin{document}
 \maketitle
+\vspace*{50mm}
 \tableofcontents
 
 \section{Task 1}
@@ -41,7 +42,42 @@
 \subsection{Objective}
 The objective of this task is to build two CMOS inverter chains of different length and probing before the first and after the last inverter. The purpose of this is to measure and calculate the propagation delay a single inverter without knowing the added capacitance of the scope probe or directly measuring the input capacitance of just one inverter.
 
+\subsection{Equipment}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Component} & \textbf{Model} & \textbf{Quantity} \\
+        \hline
+        Hex Scmitt-Trigger Inverters & SN74HC1 & 1 \\
+        Oscilloscope & HP54622 & 1 \\
+        Waveform generator  & HP33120 & 1\\
+        Voltage source & HPE3631 & 1 \\
+        Breadboard & \~ & 1 \\
+        \hline
+    \end{tabular}
+    \caption{List of components used in task 1.}
+    \label{tab:bom}
+\end{table}
+
+\clearpage
+
 \subsection{Method}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Circuit_draw.jpg}
+    \caption{Picture of the setup for task 1.}  
+    \label{fig:circuit}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{circuit_schematics.png}
+    \caption{Schematic of the setup for task 1.}
+    \label{fig:schematic}
+\end{figure}
 
 
 \end{document}
