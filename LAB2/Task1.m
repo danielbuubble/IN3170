@@ -39,14 +39,16 @@ HPE3631_SetVolt(1, 5.0);
 
 % reading waveform from scope and plotting it
 %HP54622_AutoScale(1) % scaling Y-axis and offset (not necessary if already adjusted manually). 
-%HP54622_SetTimeScale(0.3e-05);
+%HP54622_SetTimeScale(0.2e-06);
 %HP54622_SetVerticalRange(1,2.0,0.2) % Useful for some scopes where the knobs do not work properly!!!
 [time,data]=HP54622_GetData;
+
 %ploting the first row of data (channel 1) vs time
 figure(1);
 hold on;
 plot(time,data(:,1));
 plot(time, data(:,2));
+legend('Input', 'Output');
 hold off;
 
 % now you should see a saw tooth waveform plottet in a matlab figure

@@ -31,20 +31,20 @@ cd(here);
 % Setting the waveform generator
 
 HP33120_SetSignal('SQU',5);
-%HP33120_SetDCoff(1);
+%HP33120_SetDCoff(2.25);
 HP33120_SetFreq(400);
 
 % Set the voltage supply
 HPE3631_SetVolt(1, 5.0);
 
 % reading waveform from scope and plotting it
-HP54622_AutoScale(1) % scaling Y-axis and offset (not necessary if already adjusted manually). 
-HP54622_SetTimeScale(0.15e-2);
-%HP54622_SetVerticalRange(1,2.0,0.2) % Useful for some scopes where the knobs do not work properly!!!
+%HP54622_AutoScale(1) % scaling Y-axis and offset (not necessary if already adjusted manually). 
+HP54622_SetTimeScale(2.8e-3);
+%HP54622_SetVerticalRange(1,2.5,0.2) % Useful for some scopes where the knobs do not work properly!!!
 [time,data]=HP54622_GetData;
 %ploting the first row of data (channel 1) vs time
 theory = linspace(5, 0, 100);
-theory_time = linspace(0, 1.46e-5, 100);
+theory_time = linspace(0,0.702e-3 , 100);
 figure(1);
 hold on;
 
