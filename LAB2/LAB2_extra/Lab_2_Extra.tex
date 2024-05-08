@@ -38,11 +38,32 @@
 \section{Task 1}
 
 \subsection{Objective}
-The objective of this task is to build two CMOS inverter chains of different length and probing before the first and after the last inverter. The purpose of this is to measure and calculate the propagation delay a single inverter without knowing the added capacitance of the scope probe or directly measuring the input capacitance of just one inverter.
+The objective of this task is to build two CMOS inverter chains of different length and probing before the first and after the last inverter. The purpose of this is to measure and calculate the propagation delay a single inverter without knowing the added capacitance of the scope probe or directly measuring the delay of just one inverter.
+
+\subsection{Theory}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{illustration.png}
+    \caption{Illustration of the different propegation delays for a inverter chain.}
+    \label{fig:illustration}
+\end{figure}
+
+The total propagation delay of a chain of inverters is the sum of the propagation delay of each inverter. The oscilloscope probes used to measure the input and output signals add capacitance to the circuit, which can affect the measurement of the propagation delay. By measuring at the start and end of a inverter chain the added delay from the parasitic capacitance of the probes can be merged with the propagation delay of the first and last inverter as shown in figure \ref{fig:illustration}. I.e. the total propagation delay of a chain of inverters can be written as: 
+\begin{equation}
+    t_{p\_tot} = t_{p1} + t_{p2} + \cdots + t_{pn} 
+\end{equation}
+
+Where $t_{p1}$ and $t_{pn}$ also include the propagation delay introduced by the probes.
+
+By then measuring the propagation delay of a chain of inverters with $n$ inverters and subtracting the propagation delay of a chain of inverters with $n-1$ inverters, the difference between the two would be the propagation delay of a single inverter without the added delay from the probes. This can be written as:
+
+\begin{equation}
+    t_{1inv} = t_{p\_tot(n)} - t_{p\_tot(n-1)} \label{eq:1inv}
+\end{equation}
 
 \subsection{Equipment}
-
-\begin{table}[h]
+\begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -52,14 +73,12 @@ The objective of this task is to build two CMOS inverter chains of different len
         Oscilloscope & HP54622 & 1 \\
         Waveform generator  & HP33120 & 1\\
         Voltage source & HPE3631 & 1 \\
-        Breadboard & ~ & 1 \\
+        Breadboard & $\sim$ & 1 \\
         \hline
     \end{tabular}
     \caption{List of components used in task 1.}
     \label{tab:bom}
 \end{table}
-
-\clearpage
 
 \subsection{Method}
 
@@ -77,8 +96,57 @@ The objective of this task is to build two CMOS inverter chains of different len
     \label{fig:schematic}
 \end{figure}
 
-In this task we made two inverter chains, one with 3 inverters and one with 4 inverters. By using the IC SN74HC1 we only made 1 chain with 4 inverters, and then used the first 3 inverters to make the chain with 3 inverters. We probed the output of the third inverter with a oscilioscope to measure the propagation delay of the inverter chain with 3 inverters. We then probed the output of the fourth inverter to measure the propagation delay of the inverter chain with 4 inverters. The input was proved with channel 1 on the oscilioscope and both of the output was probed using channel 2 on the oscilioscope.
+On a breadboard, using $M1$ (SN74HC1) we built two inverter chains, one with 3 inverters and one with 4 inverters. At pin 1 a square wave with a frequency of 400 Hz, $V_{pp}$ of 2.1 V and $V_{off}$ of 1.1 V was connected. At pin 14 a 5 V power supply was connected. Pin 7 was connected to ground. In figure \ref{fig:circuit} and \ref{fig:schematic}; probe 1 is used to measure the input signal, probe 2 is used to measure the output after the third inverter and probe 3 is used to measure the output after the fourth inverter.
 
-The input signal was a square wave with a frequency of 400Hz that was connected to pin 1, the input of first inverter in the chain. On pin 14, we connected a 5V power supply. 
+On the oscilloscope, channel 1 is connected to probe 1 and channel 2 is connected to probe 2 and 3, depending on if measuring for three or four inverters respectively. To reduce noise on the output, the built-in averaging filter of the oscilloscope was used. The X- and Y-axis were scaled to show one rising/falling edge of the input and output.
 
+\clearpage
+
+\subsection{Results}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{3_inverters_marked.png}
+    \caption{Rising edge of the input and falling edge of the output for the three inverter chain, with labeled marked points on the plot.}
+    \label{fig:3inv}
+\end{figure}
+
+In figure \ref{fig:3inv} point 2a is used as the switching point for the input signal, somewhere around 50 \% of the rising edge. This point is estimated using point 1a as the low-signal and point 3a as the high-signal of the input signal. The same is done for the output signal in figure \ref{fig:3inv} using the points marked with 'b' instead.
+
+The total propagation delay for the three inverter-chain is calculated as follows:
+\begin{align}
+    t_{in} &= 5.1\mathrm{e}{-9} \ \text{s} \\
+    t_{out} &= 3.41\mathrm{e}{-8} \ \text{s} \\
+    t_{3inv} &= t_{out} - t_{in} = 2.9\mathrm{e}{-8} \ \text{s} \label{eq:3inv}
+\end{align}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{4_inverters_marked.png}
+    \caption{Rising edges of the input and output for the four inverter chain, with labeled marked points on the plot.}
+    \label{fig:4inv}
+\end{figure}
+
+The same method for finding the total propagation delay is used for the four inverter-chain in figure \ref{fig:4inv} and is as follows:
+
+\begin{align}
+    t_{in} &= 5\mathrm{e}{-9} \ \text{s} \\
+    t_{out} &= 4.75\mathrm{e}{-8} \ \text{s} \\
+    t_{4inv} &= t_{out} - t_{in} = 4.45\mathrm{e}{-8} \  \text{s} \label{eq:4inv}
+\end{align}
+
+The values found in equation \ref{eq:3inv} and \ref{eq:4inv} are then used in equation \ref{eq:1inv} to calculate the propagation delay of a single inverter as follows:
+
+\begin{equation}
+    t_{1inv} = t_{4inv} - t_{3inv} = 1.55\mathrm{e}{-8} \ \text{s}
+\end{equation}
+
+\subsection{Discussion}
+In the results section, both inverter chains are only plotted for either rising or falling edge. This is done on the assumption of equal time for both edges. This is not necessarily true, but the difference is assumed to be negligible.
+
+The calculation of the switching points in figure \ref{fig:3inv} and \ref{fig:4inv} have some inacurracies. The high and low signal points '1' and '3' are not exact. From the figures it is highly likely that the inverters are a underdampened system given that the measurements at probe 2 and 3 have a period of oscillating before stabilising at transition. To measure more accurately, the high points are set a bit further from the edges, giving the signal time to settle. This does not necessarily give a fully accurate measurement, but it is more likely to give a more stable one. 
+
+As mentioned, the switching points were calculated to be the halfway between points 1 and 3 in figure \ref{fig:3inv} and \ref{fig:4inv}. The points marked 2a and 2b are not necessarily the exact switching points, as the oscilloscope resolution limits how exact the measurements could be. 
+
+As mentioned, an averaging filter was used to reduce noise on the output signal. It is still important to mention that the assignement was not done fully controlled. There is highly likely serveral stochastic variables tempering with the measurements.
 \end{document}
