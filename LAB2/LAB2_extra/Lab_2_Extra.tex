@@ -143,11 +143,17 @@ The values found in equation \ref{eq:3inv} and \ref{eq:4inv} are then used in eq
 
 \subsection{Discussion}
 In the results section, both inverter chains are only plotted for either rising or falling edge. This is done on the assumption of equal time for both edges. This is not necessarily true, but the difference is assumed to be negligible.
+ \paragraph*{}
+The oscilloscope data depicted in Figures \ref{fig:3inv} and \ref{fig:4inv} suggests that the switching process is influenced by what appears to be an underdamped system response, where the measured signals at probes 2 and 3 exhibit oscillatory behavior prior to stabilizing. This oscillation introduces uncertainty in identifying the precise moment the signal reaches its high and low values, designated as points '1' and '3' respectively.
+\paragraph*{}
+This issue was mitigated by ajusting the reference points farther from the transition edges, allowing the transient response to decay. While this improves measurement stability and is more likely to yield consistency across multiple readings, it is essential to acknowledge that it does not guarantee absolute accuracy.
 
-The calculation of the switching points in figure \ref{fig:3inv} and \ref{fig:4inv} have some inacurracies. The high and low signal points '1' and '3' are not exact. From the figures it is highly likely that the inverters are a underdampened system given that the measurements at probe 2 and 3 have a period of oscillating before stabilising at transition. To measure more accurately, the high points are set a bit further from the edges, giving the signal time to settle. This does not necessarily give a fully accurate measurement, but it is more likely to give a more stable one. 
+\paragraph*{}
+The switching points were identified as the mid-level voltages between the high and low signal points, labeled as points '1' and '3' in Figures \ref{fig:3inv} and \ref{fig:4inv}. As such, the midpoints at which the signal transitions occur are designated as points '2a' and '2b.' It is important to note, however, that these identified switching points may not coincide precisely with the true thresholds of the logic levels due to the finite resolution of the oscilloscope. The samplerate of the measurement tool limits the ability to capture the exact moment at which the signal voltage crosses the threshold, introducing a potential source of error in the determination of the switching points.
 
-As mentioned, the switching points were calculated to be the halfway between points 1 and 3 in figure \ref{fig:3inv} and \ref{fig:4inv}. The points marked 2a and 2b are not necessarily the exact switching points, as the oscilloscope resolution limits how exact the measurements could be. 
-
-As mentioned, an averaging filter was used to reduce noise on the output signal. It is still important to mention that the assignement was not done fully controlled. There is highly likely serveral stochastic variables tempering with the measurements.
+\paragraph*{}
+The implementation of an averaging filter played a crucial role in reducing noise within the output signal. This decision aimed to smoothen random signal variations, yielding a waveform that better represented the inherent characteristics of the inverter chain.
+\paragraph*{}
+Despite the filtering approach, it is acknowledged that the experiment was not conducted in a wholly controlled environment. Various stochastic variables could have affected the accuracy of the measurements, including but not limited to electromagnetic disturbances, fluctuations in the power supply, and thermal noise within the electronic components themselves. Recognizing these influences is vital for understanding the potential deviations in the reported results.
 
 \end{document}
