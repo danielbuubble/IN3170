@@ -80,6 +80,8 @@ By then measuring the propagation delay of a chain of inverters with $n$ inverte
     \label{tab:bom}
 \end{table}
 
+\clearpage
+
 \subsection{Method}
 
 \begin{figure}[h!]
@@ -96,7 +98,7 @@ By then measuring the propagation delay of a chain of inverters with $n$ inverte
     \label{fig:schematic}
 \end{figure}
 
-On a breadboard, using $M1$ (SN74HC1) we built two inverter chains, one with 3 inverters and one with 4 inverters. At pin 1 a square wave with a frequency of 400 Hz, $V_{pp}$ of 2.1 V and $V_{off}$ of 1.1 V was connected. At pin 14 a 5 V power supply was connected. Pin 7 was connected to ground. In figure \ref{fig:circuit} and \ref{fig:schematic}; probe 1 is used to measure the input signal, probe 2 is used to measure the output after the third inverter and probe 3 is used to measure the output after the fourth inverter.
+On a breadboard, using $M1$ (SN74HC1) we built two inverter chains, one with 3 inverters and one with 4 inverters. At pin 1 a square wave with a frequency of 400 Hz, $V_{pp}$ of 2.1 V and $V_{off}$ of 1.1 V was connected. At pin 14 a 5 V power supply was connected. Pin 7 was connected to ground. In figure \ref{fig:circuit} and \ref{fig:schematic}; probe 1 is used to measure the input signal, probe 2 is used to measure the output after the third inverter and probe 3 is used to measure the output after the fourth inverter. The wire connecting the inverter 3 and 4 is disconnected when measuring the three inverter chain.
 
 On the oscilloscope, channel 1 is connected to probe 1 and channel 2 is connected to probe 2 and 3, depending on if measuring for three or four inverters respectively. To reduce noise on the output, the built-in averaging filter of the oscilloscope was used. The X- and Y-axis were scaled to show one rising/falling edge of the input and output.
 
